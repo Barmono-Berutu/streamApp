@@ -1,0 +1,13 @@
+flutter_native_splash:
+  color: "#ffffff"
+  image: lib/gambar/g.png
+  color_dark: "#121212"
+  image_dark: lib/gambar/g.png
+
+  android_12:
+    image: lib/gambar/g.png
+    icon_background_color: "#ffffff"
+    image_dark: lib/gambar/g.png
+    icon_background_color_dark: "#121212"
+
+  web: false
