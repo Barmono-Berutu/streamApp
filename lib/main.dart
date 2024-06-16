@@ -2,10 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:movie_app/api_data/api.dart';
-import 'package:movie_app/model/pages/movie_page.dart';
+import 'package:movie_app/model/pages/home_data/home.dart';
 import 'package:movie_app/model/provider/movie_get_dis_prov.dart';
 import 'package:movie_app/model/repository/movie_repositori_imple.dart';
 import 'package:movie_app/model/repository/movie_repository.dart';
+import 'package:movie_app/model/theme/theme_prov.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -34,11 +35,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => MovieGetDisProve(movieReposytori))
+        ChangeNotifierProvider(
+            create: (_) => MovieGetDisProve(movieReposytori)),
+        ChangeNotifierProvider(create: (_) => ThemeProv())
       ],
-      child: MaterialApp(
-        home: MoviePage(),
-      ),
+      child: Consumer<ThemeProv>(builder: (_, value, __) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Home(),
+          theme: value.themeData,
+        );
+      }),
     );
   }
 }
